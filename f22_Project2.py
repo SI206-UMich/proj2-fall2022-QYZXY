@@ -191,7 +191,20 @@ def write_csv(data, filename):
     This function should not return anything.
     """
 
+def check_policy_numbers(data):
+    invalid = []
+    for tuple in data:
+        id = tuple[2]
+        pol = tuple[3]
+        if pol != "Pending" and pol != "Exempt":
+            '''print(pol)
+            print(re.match("20[0-9][0-9]-00[0-9]{4}STR", pol)== None)
+            print(re.match("STR-000[0-9]{4}", pol) == None)
+            print('ok')'''
 
+            if (re.match("20[0-9][0-9]-00[0-9]{4}STR", pol)) == None and (re.match("STR-000[0-9]{4}", pol)) == None:
+                invalid.append(id)
+    return invalid
 
     """
     Write a function that takes in a list of tuples called data, (i.e. the one that is returned by
